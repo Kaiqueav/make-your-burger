@@ -1,9 +1,4 @@
+<script setup></script>
 <template>
-    <p>footer</p>
+  <p>footer</p>
 </template>
-
-<script>
-export default {
-     name: "footer"
-}
-</script>
