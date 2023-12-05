@@ -1,14 +1,46 @@
-<script setup></script>
+<script setup>
+const props = defineProps(['logo'])
+
+ </script>
 <template>
-  <header>
-    <nav>
-      <RouterLink to="/">
-        <img src="" id="logo" />
+    <div class="nav">
+      <RouterLink to="/" id="logo-url">
+        <img :src="props.logo" alt="" id="logo" />
       </RouterLink>
       <RouterLink to="/">Home</RouterLink>
       <RouterLink to="/pedidos">Pedidos</RouterLink>
-    </nav>
-  </header>
+    </div>
 </template>
-<style scoped></style>
+<style scoped>
+
+  
+  .nav{
+    display: flex;
+    justify-content: flex-end;
+    background-color: #222;
+    border-bottom:  4px solid #111;
+    padding: 15px 50px;
+    align-items: center;
+    width: 100%;
+    height: 40%;
+  }
+  #logo-url{
+    margin:auto;
+    margin-left: 0;
+  }
+  #logo{
+    width:40px;
+    height:40px
+  }
+  .nav a{
+    color:#fcba03;
+    text-decoration: none;
+    margin: 4%;
+    transition: .5s;
+  }
+  .nav a:hover{
+    color:#fff;
+  }
+
+</style>
 
