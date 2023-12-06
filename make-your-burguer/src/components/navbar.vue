@@ -17,7 +17,7 @@ const props = defineProps(['logo'])
     justify-content: flex-end;
     background-color: #222;
     border-bottom:  4px solid #111;
-    padding: 15px 50px;
+    padding: 0px 50px;
     align-items: center;
 
   }
@@ -26,14 +26,15 @@ const props = defineProps(['logo'])
     margin-left: 0;
   }
   #logo{
-    width:40px;
-    height:40px
+    width: 50px;
+    height:50px
   }
   .nav a{
     color:#fcba03;
     text-decoration: none;
     margin: 4%;
     transition: .5s;
+    font-size: 20px;
   }
   .nav a:hover{
     color:#fff;
