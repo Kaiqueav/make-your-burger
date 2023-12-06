@@ -5,22 +5,25 @@ import Footer from "./components/footer.vue";
  
 </script>
 <template>
+  <div class="main-container">
     <Navbar logo="/img/logo.png"/>
     <RouterView />
-    <Footer />
+    <Footer />  
+   
+  </div>
+    
   
 </template>
-<style scoped>
+<style>
 *{
   font-family: Helvetica;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-
+  border: 0;
 }
 .main-container{
-margin: 50px;
-min-height: 250px;
+   min-height: 250px;
 }
 h1{
   text-align: center;

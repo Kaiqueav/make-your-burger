@@ -11,9 +11,7 @@ const props = defineProps(['logo'])
       <RouterLink to="/pedidos">Pedidos</RouterLink>
     </div>
 </template>
-<style scoped>
-
-  
+<style scoped>  
   .nav{
     display: flex;
     justify-content: flex-end;
@@ -21,8 +19,7 @@ const props = defineProps(['logo'])
     border-bottom:  4px solid #111;
     padding: 15px 50px;
     align-items: center;
-    width: 100%;
-    height: 40%;
+
   }
   #logo-url{
     margin:auto;
