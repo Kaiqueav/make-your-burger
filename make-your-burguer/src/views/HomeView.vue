@@ -1,11 +1,12 @@
 
 <script setup>
- import banner from '../components/banner.vue';
+ import Banner from '../components/banner.vue';
+ import formBurger from '../components/formBurger.vue';
 </script>
 <template>
     <banner />
     <div class="main-container">
-        <h1>home</h1>
+        <formBurger />
     </div>
 </template>
 
