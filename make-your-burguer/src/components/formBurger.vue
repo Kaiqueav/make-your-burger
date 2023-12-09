@@ -1,7 +1,8 @@
 <script setup>
- import {ref, onMounted} from 'vue'
+ import Message from './components/message.vue';
+ import {ref, onMounted} from 'vue';
 
- import Message from './message.vue';
+ 
 const paes = ref(null);
 const carnes = ref(null);
 const opcionaisData = ref(null);
@@ -72,7 +73,7 @@ const limpar = () =>{
 <div class="main-container">
    
     <h1> MONTE SEU BURGER</h1>
-    <message :msg="msg" v-show="msg"/>
+    <Message :msg="msg" v-show="msg"/>
     <form class="formBurger" @submit="createBurger">
         <div class="input-container">
             <label for="nome">Nome do Cliente:</label>
