@@ -11,6 +11,7 @@ const opcionaisCli = ref([]);
 const msg = ref(null);
 
 
+// função para consumir json
 const getIngredients = async () =>{
     const req = await fetch ('http://localhost:3000/ingredientes');
     const data = await req.json();
@@ -18,12 +19,40 @@ const getIngredients = async () =>{
     carnes.value = data.carnes;
     opcionaisData.value = data.opcionais
 }
-
+// funçao para enviar para o servidor
  const createBurger = async (e) => {
     e.preventDefault();
-    console.log("criou");
+
+     const data = {
+        nome: nome.value,
+        pao: pao.value,
+        carne: carne.value,
+        opcionais: Array.from(opcionaisCli.value),
+        status: "Solicitado"
+     }
+
+    //CONVERTENDO PARA JSON
+
+    const dataJson = JSON.stringify(data)
+
+    const req = await fetch("http://localhost:3000/burgers",{
+        method: 'POST',
+        headers: {"Content-Type": "application/json"},
+        body: dataJson
+    });
+    const res = await req.json();
+
+    msg.value
  }
 
+
+// função para limpar os campos
+const limpar = () =>{
+    nome.value ='';
+    pao.value = '';
+    carne.value = '';
+    opcionaisCli.value ='';
+}
  onMounted(() => {
     getIngredients();
 });
@@ -38,7 +67,7 @@ const getIngredients = async () =>{
     <form class="formBurger" @submit="createBurger">
         <div class="input-container">
             <label for="nome">Nome do Cliente:</label>
-            <input id="nome" name="nome" v-model="message" placeholder="Digite Seu Nome">
+            <input id="nome" name="nome" v-model="nome" placeholder="Digite Seu Nome">
         </div>
 
         <div class="input-container">
