@@ -1,7 +1,8 @@
 <script setup>
  import {ref, onMounted} from 'vue'
 
- const paes = ref(null);
+ import Message from './message.vue';
+const paes = ref(null);
 const carnes = ref(null);
 const opcionaisData = ref(null);
 const nome = ref(null);
@@ -40,9 +41,15 @@ const getIngredients = async () =>{
         headers: {"Content-Type": "application/json"},
         body: dataJson
     });
+
+
     const res = await req.json();
 
-    msg.value
+    msg.value = `pedido N° ${res.id} realizado`
+    setTimeout(()=>{
+        msg.value = ""
+    },3000);
+    limpar()
  }
 
 
@@ -63,7 +70,9 @@ const limpar = () =>{
 
 <template>
 <div class="main-container">
+   
     <h1> MONTE SEU BURGER</h1>
+    <message :msg="msg" v-show="msg"/>
     <form class="formBurger" @submit="createBurger">
         <div class="input-container">
             <label for="nome">Nome do Cliente:</label>
