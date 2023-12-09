@@ -1,40 +1,70 @@
-<script setup></script>
-<template>
+<script setup>
+ import {ref, onMounted} from 'vue'
 
+ const paes = ref(null);
+const carnes = ref(null);
+const opcionaisData = ref(null);
+const nome = ref(null);
+const pao = ref(null);
+const carne = ref(null);
+const opcionaisCli = ref([]);
+const msg = ref(null);
+
+
+const getIngredients = async () =>{
+    const req = await fetch ('http://localhost:3000/ingredientes');
+    const data = await req.json();
+    paes.value = data.paes;
+    carnes.value = data.carnes;
+    opcionaisData.value = data.opcionais
+}
+
+ const createBurger = async (e) => {
+    e.preventDefault();
+    console.log("criou");
+ }
+
+ onMounted(() => {
+    getIngredients();
+});
+
+</script>
+
+
+
+<template>
 <div class="main-container">
     <h1> MONTE SEU BURGER</h1>
-    <form class="formBurger">
+    <form class="formBurger" @submit="createBurger">
         <div class="input-container">
             <label for="nome">Nome do Cliente:</label>
             <input id="nome" name="nome" v-model="message" placeholder="Digite Seu Nome">
         </div>
+
         <div class="input-container">
             <label for="pao">Escolha seu Pão:</label>
-            <select v-model="selected" id="pao">
-                <option value="Integral">Integral</option>
+            <select v-model="pao" id="pao" name="pao">
+                <option value=""> Selecione seu pão</option>
+                <option v-for="(pao, index) in paes" :key="index" :value="pao.tipo">{{ pao.tipo }}</option>
             </select>
         </div>
+
         <div class="input-container">
-            <label for="Carne">Escolha sua carne:</label>
-            <select v-model="selected" id="carne">
-                <option value="Maminha">Maminha</option>
+            <label for="carne">Escolha sua carne:</label>
+            <select v-model="carne" id="carne" name="carne">
+                <option value=""> Selecione sua carne</option>
+                <option v-for="(carne, index) in carnes" :key="index" :value="carne.tipo">{{carne.tipo}}</option>
             </select>
         </div>
+
           <div class="opcionais-container">
             <label id="opcionais-title" for="opcionais">Escolha seu opcional:</label>
-            <div class="checkboxContainer">
-              <input type="checkbox" name="" id="checkbox" v-model="opcionais">   
-              <span> Salame</span>
-            </div>
-            <div class="checkboxContainer">
-              <input type="checkbox" name="" id="checkbox" v-model="opcionais">   
-              <span> Salame</span>
-            </div>
-            <div class="checkboxContainer">
-              <input type="checkbox" name="" id="checkbox" v-model="opcionais">   
-              <span> Salame</span>
+            <div class="checkboxContainer" v-for="opcional in opcionaisData" :key="opcional.id">
+              <input type="checkbox" name="opcioanis" id="checkbox" v-model="opcionaisCli" :value="opcional.tipo">   
+              <span> {{opcional.tipo}}</span>
             </div>
         </div>
+
         <div class="input-container">
             <input type="submit"  id="btn-form" value="criar meu burger!">
         </div>
