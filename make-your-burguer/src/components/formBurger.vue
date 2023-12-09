@@ -1,5 +1,5 @@
 <script setup>
- import Message from './components/message.vue';
+ import Message from './message.vue';
  import {ref, onMounted} from 'vue';
 
  
